@@ -1,47 +1,21 @@
 # String colouring speed optimisation benchmarking
 
-Executed with
+Benchmarked on:
+- 10 diffs x 12 lines each
+- 50 diffs x 12 lines each
+
+| Benchmark Script Name                     | 10 Diffs Execution Time (s) | 50 Diffs Execution Time (s) |
+|-------------------------------------------|-----------------------------|-----------------------------|
+| apply_colouring_fastrs_join_strings       |           0.020             |           0.060             |
+| apply_colouring_fastrs_join_strings_regex |           0.021             |           0.021             |
+| apply_colouring_str_join                  |           0.028             |           0.029             |
+| fastrs_join_strings                       |           0.020             |           0.019             |
+
+## Reproduction
+
+Executed in the `10` and `50` subdirectories with:
 
 ```sh
 for x in *.py; do echo $x; time python $x 2>/dev/null; echo; done 2>&1 | grep -v "user" | grep -v "sys"
 ```
 
-10 diffs x 12 lines each
-
-```
-benchmark_apply_colouring_fastrs_join_strings.py                                    
-
-real    0m0.020s                          
-
-benchmark_apply_colouring_fastrs_join_strings_regex.py                              
-
-real    0m0.021s                          
-
-benchmark_apply_colouring_str_join.py     
-
-real    0m0.028s                          
-
-benchmark_fastrs_join_strings.py          
-
-real    0m0.020s        
-```
-
-50 diffs x 12 lines each
-
-```
-benchmark_apply_colouring_fastrs_join_strings.py
-
-real    0m0.060s
-
-benchmark_apply_colouring_fastrs_join_strings_regex.py
-
-real    0m0.021s
-
-benchmark_apply_colouring_str_join.py
-
-real    0m0.029s
-
-benchmark_fastrs_join_strings.py
-
-real    0m0.019s
-```
